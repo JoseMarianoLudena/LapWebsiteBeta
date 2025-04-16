@@ -35,28 +35,30 @@ body, html {
   margin-left: 0.5rem;
 }
 
-.navbar .logo-letter {
+.navbar .logo {
   font-size: 1.875rem;
   font-weight: bold;
   font-family: 'Seaweed Script', cursive;
 }
 
 .navbar .logo-letter {
-  margin-right: 1rem; /* Small spacing between letters (4px) */
+  margin-right: 1rem;
+  font-family: 'Seaweed Script', cursive;
 }
 
 .navbar .logo-letter:last-child {
-  margin-right: 0; /* Remove margin from the last letter */
+  margin-right: 0rem;
 }
 
 .nav-links-container {
   flex: 1;
   display: flex;
   justify-content: center;
+  margin-right: 10rem;
 }
 
 .navbar .nav-links a {
-  margin-left: 1.5rem;
+  margin-left: 4rem;
   color: rgba(10, 30, 50, 1);
   text-decoration: none;
   font-size: 0.875rem;
@@ -78,28 +80,29 @@ body, html {
 .login-box {
   background-color: transparent;
   backdrop-filter: blur(5px);
-  padding: 2rem;
-  border-radius: 0.5rem;
+  padding: 3rem;
+  border-radius: 0.75rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 24rem;
+  max-width: 30rem;
   text-align: center;
 }
 
 .login-box h2 {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: bold;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .login-box input[type="email"],
 .login-box input[type="password"] {
   width: 100%;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-  border: 2px solid #000000;
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #d1d5db;
   border-radius: 0.25rem;
   outline: none;
+  font-size: 1.125rem;
 }
 
 .login-box input[type="email"]:focus,
@@ -112,12 +115,12 @@ body, html {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
-  font-size: 0.875rem;
+  margin-bottom: 2rem;
+  font-size: 1rem;
 }
 
 .login-box .options a {
-  color: #ffffff;
+  color: #3b82f6;
   text-decoration: none;
 }
 
@@ -131,18 +134,21 @@ body, html {
 }
 
 .login-box .options input[type="checkbox"] {
-  margin-right: 0.5rem;
+  margin-right: 0.75rem;
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 .login-box button {
   width: 100%;
-  padding: 0.5rem;
+  padding: 0.75rem;
   background-color: #000;
   color: white;
   border: none;
   border-radius: 0.25rem;
   cursor: pointer;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.125rem;
 }
 
 .login-box button:hover {
@@ -152,7 +158,7 @@ body, html {
 .login-box .or-divider {
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .login-box .or-text {
@@ -160,9 +166,9 @@ body, html {
   background-color: rgb(0, 0, 0);
   border: 1px solid #000000;
   border-radius: 10%;
-  padding: 0.25rem 0.75rem;
-  margin: 0 1rem;
-  font-size: 0.875rem;
+  padding: 0.375rem 1rem;
+  margin: 0 1.5rem;
+  font-size: 1rem;
 }
 
 .login-box .line {
@@ -174,15 +180,204 @@ body, html {
 .login-box .signup-btn {
   display: block;
   width: 100%;
-  padding: 0.5rem;
+  padding: 0.75rem;
   background-color: #e5e7eb;
   color: #000;
   text-decoration: none;
   border-radius: 0.25rem;
+  font-size: 1.125rem;
 }
 
 .login-box .signup-btn:hover {
   background-color: #ffffff;
+}
+
+.signup-page {
+  background-color: white;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-box {
+  display: flex;
+  width: 50rem; /* Fixed width to make it a square */
+  height: 50rem; /* Equal height to make it a square */
+  border: 2px solid black;
+}
+
+.signup-left {
+  background-color: #1a2e5a;
+  color: white;
+  width: 50%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-left .logo {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: 'Seaweed Script', cursive;
+  margin-bottom: 1rem;
+}
+
+.signup-left .logo-letter {
+  margin-right: 1rem;
+}
+
+.signup-left .logo-letter:last-child {
+  margin-right: 0;
+}
+
+.logo-placeholder {
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.logo-placeholder-text {
+  color: #666;
+  font-size: 0.875rem;
+}
+
+.signup-slogan {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.signup-testimonial {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonial-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.testimonial-text {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.testimonial-footer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar-placeholder {
+  width: 50px;
+  height: 50px;
+  background-color: #ccc;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-placeholder-text {
+  color: #666;
+  font-size: 0.875rem;
+}
+
+.testimonial-rating {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.star {
+  color: #ffd700;
+  font-size: 1.25rem;
+}
+
+.signup-right {
+  background-color: white;
+  width: 50%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-right h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: black;
+}
+
+.signup-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-row input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+  outline: none;
+  font-size: 1rem;
+}
+
+.form-row input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+.signup-form button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #1a2e5a;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.signup-form button:hover {
+  background-color: #2c4370;
+}
+
+.signup-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.signup-or-text {
+  color: black;
+  font-size: 1rem;
+}
+
+.login-link {
+  color: black;
+  text-decoration: none;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.login-link:hover {
+  text-decoration: underline;
 }
 
 .footer {
@@ -195,7 +390,8 @@ body, html {
 }
 
 .footer .copyright {
-  color: #000000;
+  color: #6b7280;
+  font-weight: 600;
 }
 
 .footer .footer-links a {

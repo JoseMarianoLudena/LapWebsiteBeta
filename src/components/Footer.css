@@ -1,0 +1,24 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: white;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .footer .copyright {
+    color: #6b7280;
+    font-weight: 600;
+  }
+  
+  .footer .footer-links a {
+    margin-left: 1.5rem;
+    color: rgba(10, 30, 50, 1);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .footer .footer-links a:hover {
+    color: rgba(133, 113, 81, 1);
+  }

@@ -1,0 +1,27 @@
+.app-container {
+    background-image: url('./assets/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
+  
+  .main-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .main-content p {
+    font-size: 1.25rem;
+  }

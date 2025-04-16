@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Seaweed+Script&display=swap');
+
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.logo-container {
+  flex: 0 0 auto;
+  margin-left: 0.5rem;
+}
+
+.navbar .logo {
+  font-size: 1.875rem;
+  font-weight: bold;
+  font-family: 'Seaweed Script', cursive;
+}
+
+.navbar .logo-letter {
+  margin-right: 1rem;
+  font-family: 'Seaweed Script', cursive;
+}
+
+.navbar .logo-letter:last-child {
+  margin-right: 0rem;
+}
+
+.nav-links-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  margin-right: 10rem;
+}
+
+.navbar .nav-links a {
+  margin-left: 4rem;
+  color: rgba(10, 30, 50, 1);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.navbar .nav-links a:hover {
+  color: rgba(133, 113, 81, 1);
+  text-decoration: underline;
+}

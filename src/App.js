@@ -1,18 +1,18 @@
 import React from 'react';
-import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginBox from './components/LoginBox';
-import Footer from './components/Footer';
-import './App.css';
+import SignUp from './components/SignUp';
+import MainPage from './components/MainPage';
 
 const App = () => {
   return (
-    <div className="app-container">
-      <Navbar />
-      <div className="main-content">
-        <LoginBox />
-      </div>
-      <Footer />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginBox />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/main" element={<MainPage />} />
+      </Routes>
+    </Router>
   );
 };
 
