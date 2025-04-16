@@ -4,9 +4,10 @@ import LoginBox from './components/LoginBox';
 import SignUp from './components/SignUp';
 import MainPage from './components/MainPage';
 
+
 const App = () => {
   return (
-    <Router>
+    <Router basename="/LapWebsiteBeta">
       <Routes>
         <Route path="/" element={<LoginBox />} />
         <Route path="/signup" element={<SignUp />} />
