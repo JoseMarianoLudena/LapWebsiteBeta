@@ -30,7 +30,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(150, 147, 147, 0.375); /* Subtle dark overlay to enhance image vibrancy */
+  background-color: rgba(0, 0, 0, 0.016); /* Subtle dark overlay to enhance image vibrancy */
   z-index: 1; /* Behind content but above background image */
 }
 
@@ -51,7 +51,7 @@
   font-size: 2rem;
   font-weight: bold;
   font-family: 'Seaweed Script', cursive;
-  color: rgb(0, 0, 0);
+  color: rgba(10, 30, 50, 1);
 }
 
 .main-header .logo-letter {
@@ -94,11 +94,16 @@
   align-items: center;
   gap: 0.5rem;
   color: rgba(10, 30, 50, 1); /* Changed from white for visibility */
-  font-size: 1.25rem;
 }
 
 .icon-button:hover {
   color: rgba(133, 113, 81, 1);
+}
+
+.account-icon, .cart-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain; /* Ensures icon scales properly */
 }
 
 .cart-count {
@@ -127,7 +132,6 @@
 
 .slogan-content p {
   font-size: 1.25rem;
-  font-weight: bold;
 }
 
 /* PART 2: Product Sections */

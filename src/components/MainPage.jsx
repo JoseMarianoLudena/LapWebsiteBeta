@@ -18,6 +18,10 @@ import tShirtTwo from '../assets/t-shirt-two.jpg';
 import tShirtThree from '../assets/t-shirt-three.jpg';
 import tShirtFour from '../assets/t-shirt-four.jpg';
 
+// Import custom icons for Account and Cart
+import accountIcon from '../assets/account_icon.png';
+import cartIcon from '../assets/cart_icon.png';
+
 // Array of background images
 const backgroundImages = [
   background1,
@@ -56,10 +60,10 @@ const MainPage = () => {
           </nav>
           <div className="header-icons">
             <Link to="/account" className="icon-button">
-              <span className="account-icon">👤</span>
+              <img src={accountIcon} alt="Account" className="account-icon" />
             </Link>
             <button className="icon-button">
-              <span className="cart-icon">🛒</span>
+              <img src={cartIcon} alt="Cart" className="cart-icon" />
               <span className="cart-count">0</span>
             </button>
           </div>
