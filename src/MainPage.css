@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Seaweed+Script&display=swap');
 
+:root {
+  --primary-blue: rgba(10, 30, 50, 1); /* Updated to new dark blue color */
+}
+
 .main-page {
   background-color: white;
   min-height: 100vh;
@@ -146,14 +150,14 @@
 }
 
 .category-section h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: bold;
   text-align: center;
   margin-bottom: 0.5rem;
 }
 
 .category-subtitle {
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: #666;
   text-align: center;
   margin-bottom: 2rem;
@@ -174,47 +178,101 @@
 
 .product-image {
   width: 200px;
-  height: 200px;
+  height: 300px;
   background-size: cover;
   background-position: center;
   margin-bottom: 1rem;
-  border: 2px solid #000000;
-  box-shadow: 0 0 0 2px rgba(22, 41, 70, 0.168);
+  box-shadow: 0 0 0 2px rgba(10, 30, 50, 0.168); /* Updated to match new primary blue */
 }
 
 .product-card h3 {
   font-size: 1.25rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
+  text-align: left;
+  width: 200px;
 }
 
 .product-card p {
   font-size: 0.875rem;
   color: #666;
   margin-bottom: 1rem;
+  text-align: left;
+  margin-left: 0;
+  width: 200px; /* Establece el ancho igual al de la imagen */
 }
 
 .product-footer {
   display: flex;
-  gap: 1rem;
+  justify-content: space-between; /* Align price to left, buttons to right */
   align-items: center;
+  width: 200px; /* Match width of image, h3, and p */
 }
 
 .price {
   font-size: 1rem;
   font-weight: bold;
+  padding: 0.25rem 0.5rem; /* Add padding to create a box */
+  border: 2px solid var(--primary-blue); /* Uses updated primary blue */
+  border-radius: 4px; /* Rounded corners for aesthetic */
+  color: rgb(0, 0, 0); /* Default black text */
+  background-color: transparent; /* Default transparent background */
+  transition: all 0.3s ease; /* Smooth transition for background and text color */
 }
 
-.like-button, .add-to-cart {
+.price.added {
+  background-color: var(--primary-blue); /* Uses updated primary blue */
+  color: white; /* White text for readability */
+}
+
+.product-footer .buttons {
+  display: flex;
+  gap: 1rem; /* Space between Like and Add to Cart buttons */
+}
+
+.like-button {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 1.25rem;
-  transition: color 0.3s ease;
+  font-size: 1.5rem; /* Slightly larger for better visibility */
+  color: transparent; /* Hide default color */
+  -webkit-text-stroke: 2px red; /* Outline heart in red */
+  transition: all 0.3s ease; /* Smooth transition for hover and click */
 }
 
-.like-button:hover, .add-to-cart:hover {
-  color: rgba(133, 113, 81, 1);
+.like-button.liked {
+  -webkit-text-stroke: 0; /* Remove outline */
+  color: red; /* Filled red heart */
+  transform: scale(1.2); /* Slight scale-up when liked */
+}
+
+.like-button:hover {
+  transform: scale(1.1); /* Slight scale-up on hover */
+  color: rgba(255, 0, 0, 0.8); /* Subtle fill on hover when not liked */
+}
+
+.add-to-cart {
+  background-color: white; /* Default white background */
+  border: 2px solid var(--primary-blue); /* Uses updated primary blue */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer;
+  padding: 0.25rem; /* Padding to create a button-like appearance */
+  transition: all 0.3s ease; /* Smooth transition for border and background */
+}
+
+.add-to-cart.added {
+  background-color: var(--primary-blue); /* Uses updated primary blue */
+  border-color: white; /* White border when clicked */
+}
+
+.add-to-cart:hover {
+  transform: scale(1.05); /* Slight scale-up on hover */
+}
+
+.add-to-cart-icon {
+  width: 20px; /* Slightly smaller than navbar icons */
+  height: 20px;
+  object-fit: contain; /* Ensure icon scales properly */
 }
 
 /* PART 3: Footer */

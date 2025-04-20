@@ -18,9 +18,11 @@ import tShirtTwo from '../assets/t-shirt-two.jpg';
 import tShirtThree from '../assets/t-shirt-three.jpg';
 import tShirtFour from '../assets/t-shirt-four.jpg';
 
-// Import custom icons for Account and Cart
-import accountIcon from '../assets/account_icon.png';
-import cartIcon from '../assets/cart_icon.png';
+// Import custom icons for Account, Cart, and Add to Cart (default and white versions)
+import accountIcon from '../assets/account-icon.png';
+import cartIcon from '../assets/cart-icon.png';
+import addToCartIcon from '../assets/cart-icon.png';
+import addToCartIconWhite from '../assets/add-to-cart-icon-white.png'; // New white icon
 
 // Array of background images
 const backgroundImages = [
@@ -30,11 +32,48 @@ const backgroundImages = [
   background4,
 ];
 
+// Array of products with unique IDs for tracking liked and added-to-cart states
+const productsMen = [
+  { id: 'short-one', name: 'Short One', description: 'Breathable running shorts designed for comfort and freedom of movement.', price: '$29.99', image: shortOne },
+  { id: 'short-two', name: 'Short Two', description: 'Breathable running shorts designed for comfort and freedom of movement.', price: '$29.99', image: shortTwo },
+  { id: 't-shirt-one', name: 'T-Shirt One', description: 'Lightweight t-shirt perfect for everyday wear.', price: '$19.99', image: tShirtOne },
+];
+
+const productsWomen = [
+  { id: 't-shirt-two', name: 'T-Shirt Two', description: 'Lightweight t-shirt perfect for everyday wear.', price: '$19.99', image: tShirtTwo },
+  { id: 't-shirt-three', name: 'T-Shirt Three', description: 'Lightweight t-shirt perfect for everyday wear.', price: '$19.99', image: tShirtThree },
+  { id: 't-shirt-four', name: 'T-Shirt Four', description: 'Lightweight t-shirt perfect for everyday wear.', price: '$19.99', image: tShirtFour },
+];
+
 const MainPage = () => {
   const [currentBgIndex, setCurrentBgIndex] = useState(0);
+  const [likedProducts, setLikedProducts] = useState({}); // Track liked state for each product
+  const [addedToCart, setAddedToCart] = useState({}); // Track added-to-cart state for each product
+  const [cartCount, setCartCount] = useState(0); // Track total items in cart
 
   const handleBackgroundChange = () => {
     setCurrentBgIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length);
+  };
+
+  const toggleLike = (productId) => {
+    setLikedProducts((prev) => ({
+      ...prev,
+      [productId]: !prev[productId], // Toggle liked state
+    }));
+  };
+
+  const toggleAddToCart = (productId) => {
+    setAddedToCart((prev) => {
+      const isAdded = !prev[productId]; // Toggle added state
+      setCartCount((prevCount) => {
+        const newCount = prevCount + (isAdded ? 1 : -1);
+        return Math.max(newCount, 0); // Ensure cart count doesn't go below 0
+      });
+      return {
+        ...prev,
+        [productId]: isAdded,
+      };
+    });
   };
 
   return (
@@ -64,7 +103,7 @@ const MainPage = () => {
             </Link>
             <button className="icon-button">
               <img src={cartIcon} alt="Cart" className="cart-icon" />
-              <span className="cart-count">0</span>
+              <span className="cart-count">{cartCount}</span>
             </button>
           </div>
         </header>
@@ -81,36 +120,36 @@ const MainPage = () => {
           <h2>For Men</h2>
           <p className="category-subtitle">Lightweight and breathable, designed to allow freedom of movement.</p>
           <div className="products-grid">
-            <div className="product-card">
-              <div className="product-image" style={{ backgroundImage: `url(${shortOne})` }}></div>
-              <h3>Short One</h3>
-              <p>Breathable running shorts designed for comfort and freedom of movement.</p>
-              <div className="product-footer">
-                <span className="price">$29.99</span>
-                <button className="like-button">❤️</button>
-                <button className="add-to-cart">🛍️</button>
+            {productsMen.map((product) => (
+              <div className="product-card" key={product.id}>
+                <div className="product-image" style={{ backgroundImage: `url(${product.image})` }}></div>
+                <h3>{product.name}</h3>
+                <p>{product.description}</p>
+                <div className="product-footer">
+                  <span className={`price ${addedToCart[product.id] ? 'added' : ''}`}>
+                    {product.price}
+                  </span>
+                  <div className="buttons">
+                    <button
+                      className={`like-button ${likedProducts[product.id] ? 'liked' : ''}`}
+                      onClick={() => toggleLike(product.id)}
+                    >
+                      {likedProducts[product.id] ? '♥' : '♡'}
+                    </button>
+                    <button
+                      className={`add-to-cart ${addedToCart[product.id] ? 'added' : ''}`}
+                      onClick={() => toggleAddToCart(product.id)}
+                    >
+                      <img
+                        src={addedToCart[product.id] ? addToCartIconWhite : addToCartIcon}
+                        alt="Add to Cart"
+                        className="add-to-cart-icon"
+                      />
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="product-card">
-              <div className="product-image" style={{ backgroundImage: `url(${shortTwo})` }}></div>
-              <h3>Short Two</h3>
-              <p>Breathable running shorts designed for comfort and freedom of movement.</p>
-              <div className="product-footer">
-                <span className="price">$29.99</span>
-                <button className="like-button">❤️</button>
-                <button className="add-to-cart">🛍️</button>
-              </div>
-            </div>
-            <div className="product-card">
-              <div className="product-image" style={{ backgroundImage: `url(${tShirtOne})` }}></div>
-              <h3>T-Shirt One</h3>
-              <p>Lightweight t-shirt perfect for everyday wear.</p>
-              <div className="product-footer">
-                <span className="price">$19.99</span>
-                <button className="like-button">❤️</button>
-                <button className="add-to-cart">🛍️</button>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
@@ -119,36 +158,36 @@ const MainPage = () => {
           <h2>For Women</h2>
           <p className="category-subtitle">Lightweight and breathable, designed to allow freedom of movement.</p>
           <div className="products-grid">
-            <div className="product-card">
-              <div className="product-image" style={{ backgroundImage: `url(${tShirtTwo})` }}></div>
-              <h3>T-Shirt Two</h3>
-              <p>Lightweight t-shirt perfect for everyday wear.</p>
-              <div className="product-footer">
-                <span className="price">$19.99</span>
-                <button className="like-button">❤️</button>
-                <button className="add-to-cart">🛍️</button>
+            {productsWomen.map((product) => (
+              <div className="product-card" key={product.id}>
+                <div className="product-image" style={{ backgroundImage: `url(${product.image})` }}></div>
+                <h3>{product.name}</h3>
+                <p>{product.description}</p>
+                <div className="product-footer">
+                  <span className={`price ${addedToCart[product.id] ? 'added' : ''}`}>
+                    {product.price}
+                  </span>
+                  <div className="buttons">
+                    <button
+                      className={`like-button ${likedProducts[product.id] ? 'liked' : ''}`}
+                      onClick={() => toggleLike(product.id)}
+                    >
+                      {likedProducts[product.id] ? '♥' : '♡'}
+                    </button>
+                    <button
+                      className={`add-to-cart ${addedToCart[product.id] ? 'added' : ''}`}
+                      onClick={() => toggleAddToCart(product.id)}
+                    >
+                      <img
+                        src={addedToCart[product.id] ? addToCartIconWhite : addToCartIcon}
+                        alt="Add to Cart"
+                        className="add-to-cart-icon"
+                      />
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="product-card">
-              <div className="product-image" style={{ backgroundImage: `url(${tShirtThree})` }}></div>
-              <h3>T-Shirt Three</h3>
-              <p>Lightweight t-shirt perfect for everyday wear.</p>
-              <div className="product-footer">
-                <span className="price">$19.99</span>
-                <button className="like-button">❤️</button>
-                <button className="add-to-cart">🛍️</button>
-              </div>
-            </div>
-            <div className="product-card">
-              <div className="product-image" style={{ backgroundImage: `url(${tShirtFour})` }}></div>
-              <h3>T-Shirt Four</h3>
-              <p>Lightweight t-shirt perfect for everyday wear.</p>
-              <div className="product-footer">
-                <span className="price">$19.99</span>
-                <button className="like-button">❤️</button>
-                <button className="add-to-cart">🛍️</button>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
