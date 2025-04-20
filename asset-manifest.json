@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/LapWebsiteBeta/static/css/main.e8cef625.css",
-    "main.js": "/LapWebsiteBeta/static/js/main.64184579.js",
+    "main.css": "/LapWebsiteBeta/static/css/main.7616f0a2.css",
+    "main.js": "/LapWebsiteBeta/static/js/main.7d643701.js",
     "static/media/background.png": "/LapWebsiteBeta/static/media/background.8d5d9c1c62b9f758da8c.png",
     "static/media/bg2.png": "/LapWebsiteBeta/static/media/bg2.69dc1d94a78b2b4baa9b.png",
     "static/media/bg1.png": "/LapWebsiteBeta/static/media/bg1.e1256ec2166e577f00c9.png",
@@ -12,12 +12,13 @@
     "static/media/t-shirt-one.jpg": "/LapWebsiteBeta/static/media/t-shirt-one.ae18077c7a0a9a6eff81.jpg",
     "static/media/t-shirt-four.jpg": "/LapWebsiteBeta/static/media/t-shirt-four.a76acb95e9325725849d.jpg",
     "static/media/t-shirt-three.jpg": "/LapWebsiteBeta/static/media/t-shirt-three.93b12c3d9f2e4b2f1f66.jpg",
+    "static/media/add-to-cart-icon-white.png": "/LapWebsiteBeta/static/media/add-to-cart-icon-white.521c7263c05c3ab7d9de.png",
     "index.html": "/LapWebsiteBeta/index.html",
-    "main.e8cef625.css.map": "/LapWebsiteBeta/static/css/main.e8cef625.css.map",
-    "main.64184579.js.map": "/LapWebsiteBeta/static/js/main.64184579.js.map"
+    "main.7616f0a2.css.map": "/LapWebsiteBeta/static/css/main.7616f0a2.css.map",
+    "main.7d643701.js.map": "/LapWebsiteBeta/static/js/main.7d643701.js.map"
   },
   "entrypoints": [
-    "static/css/main.e8cef625.css",
-    "static/js/main.64184579.js"
+    "static/css/main.7616f0a2.css",
+    "static/js/main.7d643701.js"
   ]
 }
