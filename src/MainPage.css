@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Seaweed+Script&display=swap');
 
 :root {
-  --primary-blue: rgba(10, 30, 50, 1); /* Updated to new dark blue color */
+  --primary-blue: rgba(10, 30, 50, 1); /* Dark blue color */
 }
 
 .main-page {
@@ -40,7 +40,7 @@
 
 .main-header {
   width: 100%;
-  padding: 1rem 2rem;
+  padding: 2rem 2rem; /* Increased vertical padding to make navbar taller */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -182,7 +182,7 @@
   background-size: cover;
   background-position: center;
   margin-bottom: 1rem;
-  box-shadow: 0 0 0 2px rgba(10, 30, 50, 0.168); /* Updated to match new primary blue */
+  box-shadow: 0 0 0 2px rgba(10, 30, 50, 0.168);
 }
 
 .product-card h3 {
@@ -234,27 +234,31 @@
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 1.5rem; /* Slightly larger for better visibility */
-  color: transparent; /* Hide default color */
-  -webkit-text-stroke: 2px red; /* Outline heart in red */
+  padding: 0.25rem; /* Add padding to match Add to Cart button size */
   transition: all 0.3s ease; /* Smooth transition for hover and click */
 }
 
-.like-button.liked {
-  -webkit-text-stroke: 0; /* Remove outline */
-  color: red; /* Filled red heart */
+.like-button.liked .like-icon {
   transform: scale(1.2); /* Slight scale-up when liked */
 }
 
-.like-button:hover {
+.like-button:hover .like-icon {
   transform: scale(1.1); /* Slight scale-up on hover */
-  color: rgba(255, 0, 0, 0.8); /* Subtle fill on hover when not liked */
+}
+
+.like-icon {
+  width: 20px; /* Match size of Add to Cart icon */
+  height: 20px;
+  border: 1px solid rgb(197, 197, 197);
+  border-radius: 40px;
+  object-fit: contain; /* Ensure icon scales properly */
+  transition: transform 0.3s ease; /* Smooth transition for scale animations */
 }
 
 .add-to-cart {
   background-color: white; /* Default white background */
-  border: 2px solid var(--primary-blue); /* Uses updated primary blue */
-  border-radius: 4px; /* Rounded corners */
+  border: 1px solid rgb(197, 197, 197); /* Uses updated primary blue */
+  border-radius: 50px; /* Rounded corners */
   cursor: pointer;
   padding: 0.25rem; /* Padding to create a button-like appearance */
   transition: all 0.3s ease; /* Smooth transition for border and background */
@@ -270,7 +274,7 @@
 }
 
 .add-to-cart-icon {
-  width: 20px; /* Slightly smaller than navbar icons */
+  width: 23px; /* Slightly smaller than navbar icons */
   height: 20px;
   object-fit: contain; /* Ensure icon scales properly */
 }
@@ -279,29 +283,94 @@
 .main-footer {
   width: 100%;
   padding: 1rem 2rem;
+  min-height: 200px; /* Increased to accommodate dropdowns opening downward */
   background-color: rgba(10, 30, 50, 1);
   color: white;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  align-items: flex-start; /* Align items to the top */
 }
 
-.footer-copyright p {
-  font-size: 0.875rem;
+.footer-content {
+  display: flex;
+  justify-content: space-between; /* Copyright on left, links on right */
+  align-items: flex-start; /* Align items to the top */
+  width: 100%; /* Ensure content spans the footer */
 }
 
 .footer-links {
   display: flex;
   gap: 2rem;
+  flex-wrap: wrap; /* Allow wrapping if needed */
+  order: 1; /* Ensure links appear on the right */
 }
 
-.footer-link {
+.footer-link-container {
+  position: relative; /* For dropdown positioning */
+}
+
+.footer-link-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 0.5rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Space between text and arrow */
+}
+
+.footer-link-button::after {
+  content: '▼'; /* Down arrow since dropdown opens downward */
+  font-size: 0.75rem;
+  transition: transform 0.3s ease;
+}
+
+.footer-link-button:hover {
+  color: rgba(133, 113, 81, 1);
+}
+
+.footer-link-button.active::after {
+  transform: rotate(180deg); /* Rotate to up arrow when dropdown is open */
+}
+
+.footer-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem); /* Position below the button */
+  right: 0; /* Align to the right of the button */
+  background-color: rgba(10, 30, 50, 0.95); /* Slightly transparent dark blue */
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+  border-radius: 4px;
+  z-index: 10; /* Above other elements */
+  min-width: 150px; /* Ensure dropdown has enough width */
+}
+
+.footer-dropdown li {
+  padding: 0.5rem 1rem;
+}
+
+.footer-dropdown-item {
   color: white;
   text-decoration: none;
-  font-size: 0.875rem;
-  transition: color 0.3s ease;
+  font-size: 1rem;
+  display: block; /* Make the entire area clickable */
+  transition: background-color 0.3s ease;
 }
 
-.footer-link:hover {
-  color: rgba(133, 113, 81, 1);
+.footer-dropdown-item:hover {
+  background-color: rgba(133, 113, 81, 0.2); /* Subtle hover effect */
+}
+
+.footer-copyright {
+  order: 0; /* Ensure copyright appears on the left */
+}
+
+.footer-copyright p {
+  font-size: 1.25rem;
+  font-weight: 0.5rem;
+  margin: 0;
 }

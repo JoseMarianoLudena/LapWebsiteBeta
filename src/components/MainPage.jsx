@@ -18,11 +18,13 @@ import tShirtTwo from '../assets/t-shirt-two.jpg';
 import tShirtThree from '../assets/t-shirt-three.jpg';
 import tShirtFour from '../assets/t-shirt-four.jpg';
 
-// Import custom icons for Account, Cart, and Add to Cart (default and white versions)
+// Import custom icons for Account, Cart, Add to Cart, and Like/Unlike
 import accountIcon from '../assets/account-icon.png';
 import cartIcon from '../assets/cart-icon.png';
 import addToCartIcon from '../assets/cart-icon.png';
-import addToCartIconWhite from '../assets/add-to-cart-icon-white.png'; // New white icon
+import addToCartIconWhite from '../assets/add-to-cart-icon-white.png';
+import unlikeButtonIcon from '../assets/unlike-button.png';
+import likeButtonIcon from '../assets/like-button.png';
 
 // Array of background images
 const backgroundImages = [
@@ -40,16 +42,25 @@ const productsMen = [
 ];
 
 const productsWomen = [
-  { id: 't-shirt-two', name: 'T-Shirt Two', description: 'Lightweight t-shirt perfect for everyday wear.', price: '$19.99', image: tShirtTwo },
-  { id: 't-shirt-three', name: 'T-Shirt Three', description: 'Lightweight t-shirt perfect for everyday wear.', price: '$19.99', image: tShirtThree },
-  { id: 't-shirt-four', name: 'T-Shirt Four', description: 'Lightweight t-shirt perfect for everyday wear.', price: '$19.99', image: tShirtFour },
+  { id: 't-shirt-two', name: 'T-Shirt Two', description: 'Lightweight t-shirt perfect for everyday wear.', price: '$120.00', image: tShirtTwo },
+  { id: 't-shirt-three', name: 'T-Shirt Three', description: 'Breathable running shorts designed for comfort and freedom of movement.', price: '$150.00', image: tShirtThree },
+  { id: 't-shirt-four', name: 'T-Shirt Four', description: 'Breathable running shorts designed for comfort and freedom of movement.', price: '$145.00', image: tShirtFour },
 ];
+
+// Footer dropdown options
+const footerDropdownOptions = {
+  'about-us': ['Our Story', 'Mission', 'Team'],
+  'legal': ['Terms of Service', 'Privacy Policy', 'Returns'],
+  'support': ['FAQ', 'Help Center', 'Contact Support'],
+  'contact': ['Email Us', 'Phone', 'Live Chat'],
+};
 
 const MainPage = () => {
   const [currentBgIndex, setCurrentBgIndex] = useState(0);
-  const [likedProducts, setLikedProducts] = useState({}); // Track liked state for each product
-  const [addedToCart, setAddedToCart] = useState({}); // Track added-to-cart state for each product
-  const [cartCount, setCartCount] = useState(0); // Track total items in cart
+  const [likedProducts, setLikedProducts] = useState({});
+  const [addedToCart, setAddedToCart] = useState({});
+  const [cartCount, setCartCount] = useState(0);
+  const [openDropdown, setOpenDropdown] = useState(null); // Track which dropdown is open
 
   const handleBackgroundChange = () => {
     setCurrentBgIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length);
@@ -58,22 +69,26 @@ const MainPage = () => {
   const toggleLike = (productId) => {
     setLikedProducts((prev) => ({
       ...prev,
-      [productId]: !prev[productId], // Toggle liked state
+      [productId]: !prev[productId],
     }));
   };
 
   const toggleAddToCart = (productId) => {
     setAddedToCart((prev) => {
-      const isAdded = !prev[productId]; // Toggle added state
+      const isAdded = !prev[productId];
       setCartCount((prevCount) => {
         const newCount = prevCount + (isAdded ? 1 : -1);
-        return Math.max(newCount, 0); // Ensure cart count doesn't go below 0
+        return Math.max(newCount, 0);
       });
       return {
         ...prev,
         [productId]: isAdded,
       };
     });
+  };
+
+  const toggleDropdown = (dropdownName) => {
+    setOpenDropdown((prev) => (prev === dropdownName ? null : dropdownName));
   };
 
   return (
@@ -134,7 +149,11 @@ const MainPage = () => {
                       className={`like-button ${likedProducts[product.id] ? 'liked' : ''}`}
                       onClick={() => toggleLike(product.id)}
                     >
-                      {likedProducts[product.id] ? '♥' : '♡'}
+                      <img
+                        src={likedProducts[product.id] ? likeButtonIcon : unlikeButtonIcon}
+                        alt={likedProducts[product.id] ? "Liked" : "Not Liked"}
+                        className="like-icon"
+                      />
                     </button>
                     <button
                       className={`add-to-cart ${addedToCart[product.id] ? 'added' : ''}`}
@@ -172,7 +191,11 @@ const MainPage = () => {
                       className={`like-button ${likedProducts[product.id] ? 'liked' : ''}`}
                       onClick={() => toggleLike(product.id)}
                     >
-                      {likedProducts[product.id] ? '♥' : '♡'}
+                      <img
+                        src={likedProducts[product.id] ? likeButtonIcon : unlikeButtonIcon}
+                        alt={likedProducts[product.id] ? "Liked" : "Not Liked"}
+                        className="like-icon"
+                      />
                     </button>
                     <button
                       className={`add-to-cart ${addedToCart[product.id] ? 'added' : ''}`}
@@ -194,14 +217,88 @@ const MainPage = () => {
 
       {/* PART 3: Footer */}
       <footer className="main-footer">
-        <div className="footer-copyright">
-          <p>Copyright © 2025</p>
-        </div>
-        <div className="footer-links">
-          <Link to="/about" className="footer-link">About Us</Link>
-          <Link to="/legal" className="footer-link">Legal</Link>
-          <Link to="/support" className="footer-link">Support</Link>
-          <Link to="/contact" className="footer-link">Contact</Link>
+        <div className="footer-content">
+          <div className="footer-links">
+            <div className="footer-link-container">
+              <button
+                className={`footer-link-button ${openDropdown === 'about-us' ? 'active' : ''}`}
+                onClick={() => toggleDropdown('about-us')}
+              >
+                About Us
+              </button>
+              {openDropdown === 'about-us' && (
+                <ul className="footer-dropdown">
+                  {footerDropdownOptions['about-us'].map((option, index) => (
+                    <li key={index}>
+                      <Link to={`/${option.toLowerCase().replace(/\s/g, '-')}`} className="footer-dropdown-item">
+                        {option}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+            <div className="footer-link-container">
+              <button
+                className={`footer-link-button ${openDropdown === 'legal' ? 'active' : ''}`}
+                onClick={() => toggleDropdown('legal')}
+              >
+                Legal
+              </button>
+              {openDropdown === 'legal' && (
+                <ul className="footer-dropdown">
+                  {footerDropdownOptions['legal'].map((option, index) => (
+                    <li key={index}>
+                      <Link to={`/${option.toLowerCase().replace(/\s/g, '-')}`} className="footer-dropdown-item">
+                        {option}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+            <div className="footer-link-container">
+              <button
+                className={`footer-link-button ${openDropdown === 'support' ? 'active' : ''}`}
+                onClick={() => toggleDropdown('support')}
+              >
+                Support
+              </button>
+              {openDropdown === 'support' && (
+                <ul className="footer-dropdown">
+                  {footerDropdownOptions['support'].map((option, index) => (
+                    <li key={index}>
+                      <Link to={`/${option.toLowerCase().replace(/\s/g, '-')}`} className="footer-dropdown-item">
+                        {option}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+            <div className="footer-link-container">
+              <button
+                className={`footer-link-button ${openDropdown === 'contact' ? 'active' : ''}`}
+                onClick={() => toggleDropdown('contact')}
+              >
+                Contact
+              </button>
+              {openDropdown === 'contact' && (
+                <ul className="footer-dropdown">
+                  {footerDropdownOptions['contact'].map((option, index) => (
+                    <li key={index}>
+                      <Link to={`/${option.toLowerCase().replace(/\s/g, '-')}`} className="footer-dropdown-item">
+                        {option}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
+          <div className="footer-copyright">
+            <p>Copyright © 2025</p>
+          </div>
         </div>
       </footer>
     </div>
