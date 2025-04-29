@@ -10,6 +10,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative; /* For positioning the cart overlay */
 }
 
 /* PART 1: Header and Slogan */
@@ -257,8 +258,8 @@
 
 .add-to-cart {
   background-color: white; /* Default white background */
-  border: 1px solid rgb(197, 197, 197); /* Uses updated primary blue */
-  border-radius: 50px; /* Rounded corners */
+  border: 1px solid rgb(197, 197, 197); /* Updated border color */
+  border-radius: 50px; /* Updated to circular */
   cursor: pointer;
   padding: 0.25rem; /* Padding to create a button-like appearance */
   transition: all 0.3s ease; /* Smooth transition for border and background */
@@ -274,9 +275,221 @@
 }
 
 .add-to-cart-icon {
-  width: 23px; /* Slightly smaller than navbar icons */
+  width: 23px; /* Slightly wider */
   height: 20px;
   object-fit: contain; /* Ensure icon scales properly */
+}
+
+/* Cart Overlay */
+.cart-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 40%; /* Covers 40% of the page width */
+  height: 100%;
+  background-color: white;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  z-index: 200; /* Above other elements */
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-content {
+  padding: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.cart-header h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.cart-close-button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: #666;
+  cursor: pointer;
+}
+
+.cart-close-button:hover {
+  color: var(--primary-blue);
+}
+
+.cart-divider {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 1rem 0;
+}
+
+.cart-items {
+  flex: 1;
+  overflow-y: auto; /* Allow scrolling if many items */
+}
+
+.cart-items h4 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.cart-empty {
+  text-align: center;
+  color: #666;
+  font-size: 1rem;
+  margin-top: 2rem;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.cart-item-image {
+  width: 80px;
+  height: 120px;
+  background-size: cover;
+  background-position: center;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.cart-item-details {
+  flex: 1;
+}
+
+.cart-item-details h5 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.cart-item-details p {
+  font-size: 0.875rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.cart-item-quantity {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cart-item-quantity button {
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.cart-item-quantity button:hover {
+  border-color: var(--primary-blue);
+  color: var(--primary-blue);
+}
+
+.cart-item-quantity span {
+  font-size: 1rem;
+}
+
+.cart-item-price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.cart-item-price p {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.cart-item-remove {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: #666;
+}
+
+.cart-item-remove:hover {
+  color: var(--primary-blue);
+}
+
+.cart-item-divider {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 0;
+}
+
+.cart-undo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem; /* Reduced padding to move it higher */
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  margin-top: 0.5rem; /* Reduced margin to move it higher */
+}
+
+.cart-undo p {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.cart-undo button {
+  background: none;
+  border: none;
+  color: var(--primary-blue);
+  font-size: 0.875rem;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: underline; /* Underline the UNDO text */
+  text-align: center;
+  flex: 1; /* Center the button */
+}
+
+.cart-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+}
+
+.cart-checkout-button {
+  background-color: var(--primary-blue);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.cart-checkout-button:hover {
+  background-color: rgba(10, 30, 50, 0.8);
+}
+
+.cart-total-price {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 /* PART 3: Footer */
@@ -313,7 +526,7 @@
   border: none;
   color: white;
   font-size: 1.25rem;
-  font-weight: 0.5rem;
+  font-weight: 400; /* Corrected from 0.5rem to a proper font-weight value */
   cursor: pointer;
   text-transform: uppercase;
   transition: color 0.3s ease;
@@ -371,6 +584,6 @@
 
 .footer-copyright p {
   font-size: 1.25rem;
-  font-weight: 0.5rem;
+  font-weight: 400; /* Corrected from 0.5rem to a proper font-weight value */
   margin: 0;
 }
